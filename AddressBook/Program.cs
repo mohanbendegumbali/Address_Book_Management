@@ -7,7 +7,7 @@ namespace AddressBook
         public static void Main(string[] args)
         {
             Console.WriteLine(" Welcome to Address Book Management ");
-            AddressBookMain address = new AddressBookMain();
+            AddressBookMain create = new AddressBookMain();
             bool flag = true;
             while (flag)
             {
@@ -16,11 +16,18 @@ namespace AddressBook
                 switch (option)
                 {
                     case 1:
-                        address.CreateContact();
+                        create.CreateContact();
                         break;
                     case 2:
-                        address.EditContact();
+                        create.EditContact();
                         break;
+                    case 3:
+                        create.DeleteContact();
+                        break;
+                    case 4:
+                        create.Display();
+                        break;
+                    
                 }
             }
         }

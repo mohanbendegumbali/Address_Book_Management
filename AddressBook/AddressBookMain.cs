@@ -63,11 +63,27 @@ namespace AddressBook
                             Console.WriteLine(" Enter the Mail Id ");
                             contact.Email = Console.ReadLine();
                             break;
-
-
                     }
                 }
             
         }
+        public void DeleteContact(string name)
+        {
+            Contact deletecontact = new Contact();
+            foreach(var contact in address)
+                if (contact.FirstName.Equals(name) || contact.LastName.Equals(name))
+                {
+                    deletecontact = contact;
+                }
+            address.Remove(contact);
+        }
+        public void Display()
+        {
+            foreach(var contact in address)
+            {
+                Console.WriteLine("Contact Details: "+"\n"+"FirstName:"+contact.FirstName+"\n"+contact.LastName);
+            }
+        }
     }
+
 }
