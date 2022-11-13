@@ -8,6 +8,7 @@ namespace AddressBook
 {
     public class AddressBookMain
     {
+        string name;
         List<Contact> address = new List<Contact>();
         Contact contact = new Contact();
         public void CreateContact()
@@ -30,12 +31,13 @@ namespace AddressBook
             contact.Zip = Convert.ToInt32(Console.ReadLine());
             address.Add(contact);
         }
-        public void EditContact(string name)
+        public void EditContact()
         {
-            foreach(var contact in address)
+            string name = Console.ReadLine();
+            foreach (var contact in address)
                 if (contact.FirstName.Equals(name) || (contact.LastName.Equals(name)))
                 {
-                    Console.WriteLine(" Enter what you want to edit " + "\n" + " Select 1.Address" + "\n" + "2.City" + "\n" + "3.State" + "\n" + "4.PhoneNumber" + "\n" + "5.Zip" + "\n" + "6.Email Id");
+                    Console.WriteLine(" Enter what you want to edit " + "\n" + " Select " +"\n" + "1.Address" + "\n" + "2.City" + "\n" + "3.State" + "\n" + "4.PhoneNumber" + "\n" + "5.Zip" + "\n" + "6.Email Id");
                     int option=Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -67,8 +69,9 @@ namespace AddressBook
                 }
             
         }
-        public void DeleteContact(string name)
+        public void DeleteContact()
         {
+            string name=Console.ReadLine();
             Contact deletecontact = new Contact();
             foreach(var contact in address)
                 if (contact.FirstName.Equals(name) || contact.LastName.Equals(name))
