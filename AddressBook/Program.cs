@@ -6,30 +6,40 @@ namespace AddressBook
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(" Welcome to Address Book Management ");
-            AddressBookMain create = new AddressBookMain();
-            bool flag = true;
-            while (flag)
-            {
-                Console.WriteLine("1.Create Contact" + "\n" + "2.Edit Contact" + "\n" + "3.Delete Contact" + "\n" + "4.Display Contact" + "\n" + "5.Create Dictionary" + "\n" + "6.Display Dictionary");
-                int option = Convert.ToInt32(Console.ReadLine());
-                switch (option)
+            
+                Console.WriteLine("Welcome to Address Program Problem Statements\n");
+                bool choice = true;
+                AddressBookMain add = new AddressBookMain();
+                while (choice)
                 {
-                    case 1:
-                        create.CreateContact();
-                        break;
-                    case 2:
-                        create.EditContact();
-                        break;
-                    case 3:
-                        create.DeleteContact();
-                        break;
-                    case 4:
-                        create.Display();
-                        break;
-                    
+                    Console.WriteLine("What to you want to do?\n");
+                    Console.WriteLine("1. Create a Contact\n2. Edit a Contact\n3. Delete a Contact\n4. Create a Contact Dictionary\n5. Display Dictionary\n6. Exit");
+                    int option = Convert.ToInt32(Console.ReadLine());
+                    switch (option)
+                    {
+                        case 1:
+                            add.Create();
+                            break;
+                        case 2:
+                            add.Edit();
+                            add.Display();
+                            break;
+                        case 3:
+                            add.Delete();
+                            break;
+                        case 4:
+                            add.CreateDictionaryContact();
+                            break;
+                        case 5:
+                            add.DisplayDictionary();
+                            break;
+                        default:
+                            Console.WriteLine("Try Again");
+                            choice = false;
+                            break;
+                    }
                 }
-            }
+            
         }
     }
 }

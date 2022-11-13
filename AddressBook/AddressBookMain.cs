@@ -8,85 +8,120 @@ namespace AddressBook
 {
     public class AddressBookMain
     {
-        string name;
-        List<Contact> address = new List<Contact>();
-        Contact contact = new Contact();
-        public void CreateContact()
+        public List<Contact> address = new List<Contact>();
+        public Dictionary<string, List<Contact>> addressBook = new Dictionary<string, List<Contact>>();
+        public void Display()
         {
-            Console.WriteLine(" Enter the first name ");
+            foreach (var contact in address)
+            {
+                Console.WriteLine("\nContact Deatils :-" + "\n" + "First name :-" + contact.FirstName + "\n" + "Last name :-" + contact.LastName + "\n" + "Address :-" + contact.Address
+                            + "\n" + "City name :-" + contact.City + "\n" + "State name :-" + contact.State + "\n" + "Zip code :-" + contact.Zip
+                            + "\n" + "Phone number :-" + contact.PhoneNumber + "\n" + "Email Id :-\n" + contact.Email);
+            }
+        }
+        public void Create()
+        {
+            Contact contact = new Contact();
+            Console.WriteLine("Enter your First Name");
             contact.FirstName = Console.ReadLine();
-            Console.WriteLine(" Enter the last name ");
+            Console.WriteLine("Enter your Last Name");
             contact.LastName = Console.ReadLine();
-            Console.WriteLine(" Enter the address ");
+            Console.WriteLine("Enter your Address Name");
             contact.Address = Console.ReadLine();
-            Console.WriteLine(" Enter the city ");
+            Console.WriteLine("Enter your City Name");
             contact.City = Console.ReadLine();
-            Console.WriteLine(" Enter the state ");
+            Console.WriteLine("Enter your State Name");
             contact.State = Console.ReadLine();
-            Console.WriteLine(" Enter the Phone number ");
-            contact.PhoneNumber = Console.ReadLine();
-            Console.WriteLine(" Enter the Email Id ");
+            Console.WriteLine("Enter your Zip Code");
+            contact.Zip = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter your Phone Number");
+            contact.PhoneNumber = (Console.ReadLine());
+            Console.WriteLine("Enter your Email Id");
             contact.Email = Console.ReadLine();
-            Console.WriteLine("Enter the Zip");
-            contact.Zip = Convert.ToInt32(Console.ReadLine());
             address.Add(contact);
         }
-        public void EditContact()
+        public void Edit()
         {
+            Console.WriteLine("\nEnter Name whos detail your want to Edit");
             string name = Console.ReadLine();
             foreach (var contact in address)
-                if (contact.FirstName.Equals(name) || (contact.LastName.Equals(name)))
+            {
+                if (contact.FirstName.Equals(name))
                 {
-                    Console.WriteLine(" Enter what you want to edit " + "\n" + " Select " +"\n" + "1.Address" + "\n" + "2.City" + "\n" + "3.State" + "\n" + "4.PhoneNumber" + "\n" + "5.Zip" + "\n" + "6.Email Id");
-                    int option=Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("What do you want to edit :-");
+                    Console.WriteLine("1. Address\n" + "2. City\n" + "3. State\n" + "4. Zip\n" + "5. Phone Number\n" + "6. Email Id\n");
+                    int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
                         case 1:
-                            Console.WriteLine(" Enter the Address");
+                            Console.WriteLine("Enter the updated Address");
                             contact.Address = Console.ReadLine();
+
                             break;
                         case 2:
-                            Console.WriteLine(" Enter the City ");
+                            Console.WriteLine("Enter the updated City");
                             contact.City = Console.ReadLine();
+
                             break;
                         case 3:
-                            Console.WriteLine(" Enter the state ");
+                            Console.WriteLine("Enter the updated State");
                             contact.State = Console.ReadLine();
                             break;
                         case 4:
-                            Console.WriteLine(" Enter the Phone Number ");
-                            contact.PhoneNumber = Console.ReadLine();
+                            Console.WriteLine("Enter the updated Zip Code");
+                            contact.Zip = Convert.ToInt64(Console.ReadLine());
+
                             break;
                         case 5:
-                            Console.WriteLine(" Enter the Zip ");
-                            contact.Zip=Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Enter the updated Phone Number");
+                            contact.PhoneNumber = (Console.ReadLine());
+
                             break;
                         case 6:
-                            Console.WriteLine(" Enter the Mail Id ");
+                            Console.WriteLine("Enter the updated Email Id");
                             contact.Email = Console.ReadLine();
+
+                            break;
+                        default:
+                            Console.WriteLine("Try Again Later");
                             break;
                     }
                 }
-            
-        }
-        public void DeleteContact()
-        {
-            string name=Console.ReadLine();
-            Contact deletecontact = new Contact();
-            foreach(var contact in address)
-                if (contact.FirstName.Equals(name) || contact.LastName.Equals(name))
-                {
-                    deletecontact = contact;
-                }
-            address.Remove(contact);
-        }
-        public void Display()
-        {
-            foreach(var contact in address)
-            {
-                Console.WriteLine("Contact Details: "+"\n"+"FirstName:"+contact.FirstName+"\n"+contact.LastName);
             }
         }
-    }
+        public void Delete()
+        {
+            Console.WriteLine("\nEnter Name whos detail your want to Delete");
+            string name = Console.ReadLine();
 
+            foreach (var contact in address.ToList())
+            {
+                if (contact.FirstName.Equals(name))
+                {
+                    address.Remove(contact);
+                }
+                Console.WriteLine("Contact Deleted Successfully");
+            }
+        }
+        public void CreateDictionaryContact()
+        {
+            Console.WriteLine("Enter name to add AddressBook");
+            string name = Console.ReadLine();
+            addressBook.Add(name, address);
+            address = new List<Contact>();
+        }
+        public void DisplayDictionary()
+        {
+            foreach (var data in addressBook)
+            {
+                Console.WriteLine(data.Key);
+                foreach (var contact in data.Value)
+                {
+                    Console.WriteLine(contact.FirstName + "\t" + contact.LastName);
+                }
+            }
+        }
+
+
+    }
 }
